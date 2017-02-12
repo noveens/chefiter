@@ -29,7 +29,9 @@ Now that we are inside the web2py directory, how do we install it? Well, one of 
 ```
 python web2py.py
 ```
-
+Just chose an adminstrator password and remember it.
 This will launch the web2py server, now simply goto: 
 
-/views/default/home.html page
+```
+http://localhost:8000/
+```
