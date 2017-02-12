@@ -1,0 +1,30 @@
+{{extend "layout.html"}}
+<table class="table">
+<tr>
+	<th>S. No.</th>
+	<th>Title:</th>
+	<th>Edit Option:</th>
+	<th>Uploaded On:</th>
+</tr>
+{{c=1}}
+{{for i in myr:}}
+	<tr>
+		<td>
+			{{=c}}
+			{{c+=1}}
+		</td>
+
+		<td>
+			<b>{{=i["title"]}}</b>
+		</td>
+
+		<td>
+			<a href="{{=URL('default', 'edit')}}">Edit..?</a>
+		</td>
+
+		<td>
+			{{=i["created_on"]}}
+		</td>
+	</tr>
+{{pass}}
+</table>

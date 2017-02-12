@@ -1,0 +1,41 @@
+{{extend "layout.html"}}
+<h1 align="center">{{=ans["title"]}}</h1>
+<h4>
+	<p><u>The Details of the recipe are:</u></p>
+	{{=ans["something"]}}
+	<br><br><br>
+	<p><u>The Photo of the Final Dish is:</u></p>
+	<img src="{{=URL('default', 'download', args=ans["image"])}}"alt="cool!" height="250px" width="300px" />
+</h4>
+
+<div>
+	<h3 align="right">Recipe Uploaded By: &nbsp;&nbsp;&nbsp;<b><i>{{=ans["created_by.first_name"]}}</i></b></h3>
+</div>
+
+<br><br>
+<hr>
+
+<table style="width:100%;">
+	<tr>
+		<td>
+			<a href="{{=URL('default', 'update_likes_', args=ans["id"])}}"><img src="http://images.huffingtonpost.com/2015-10-21-1445455426-5159507-facebook_like_button_big.jpeg" alt="Like" width="100px" height="40px"></a>
+		</td>
+	
+		<td align="right">
+			<b>No. of likes:</b> {{=ans["likes"]}}
+		</td>
+</table>
+
+<br><br>
+
+
+{{for i in com:}}
+<b>{{=i["created_by.first_name"]}} commented:</b><br>
+{{=i["comments"]}}<br><br>
+{{pass}}
+
+<hr>
+
+<div style="float:left;">
+{{=form}}
+</div>

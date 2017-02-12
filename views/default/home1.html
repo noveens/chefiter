@@ -1,0 +1,91 @@
+{{extend "layout.html"}}
+
+<div style="display:flex; flex-direction:row;">
+	<div style="display:flex; flex-direction:column;">
+		<img src="http://previews.123rf.com/images/valeriylebedev/valeriylebedev1011/valeriylebedev101100318/8260140-Chef-Stock-Photo-chef-cook-cooking.jpg" alt="Cheffiter _/\_ " width="100" height="100"/>
+	</div>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;
+
+	<div style="display:flex; flex-direction:column;">
+		<h1 style="margin-top: 5px;">Welcome to the social network for leading Chef's.</h1>
+	</div>
+</div>
+
+<br>
+
+{{c=1}}
+
+<table style="width:60%; border-spacing:100px; padding:100;" border="1" cellpadding="100" align="center">
+	<tr>
+		<td align="center">
+			<b>S.No</b>
+		</td>
+
+		<td align="center">
+			<b>Author</b>
+		</td>
+
+		<td align="center">
+			<b>Title</b>
+		</td>
+
+		<td align="center">
+			<b>Image(s)</b>
+		</td>
+
+		<td align="center">
+			<b>Like(y)</b>
+		</td>
+	</tr>
+	<br>
+	
+<!--{{for i in ans:}}-->
+	{{for i,row in enumerate(rows):}}
+	{{if i==items_per_page: break}}
+	<tr>
+		<td align="center">
+			{{=c}}.
+			{{c+=1}}
+		</td>
+
+		<td align="center">
+			<!--{{=i["chef"]}}-->
+			{{=row.chef}}
+		</td>
+	
+		<td align="center">
+			<!--{{=i["title"]}}-->
+			{{=row.title}}
+		</td>
+
+		<td align="center">
+			<img src="{{=URL('default', 'download', args=row.image)}}"alt="cool!" height="50px" width="100px" />
+		</td>
+
+		<td align="center">
+<!--a href="http://127.0.0.1:8000/chefitter/default/home_likes">--> <a href="{{=URL('default', 'home_likes', args=row.id)}}"><img src="http://images.huffingtonpost.com/2015-10-21-1445455426-5159507-facebook_like_button_big.jpeg" alt="Like" width="100px" height="40px"></a>
+		</td>
+	</tr>
+	<!--{{pass}}-->
+
+
+<!--{{=row.name}}<br>-->
+	{{if page:}}
+	<a href="{{=URL(args=[page-1])}}">previous</a>
+	{{pass}}
+	{{if len(rows) > items_per_page:}}
+	<a href="{{=URL(args=[page+1])}}">next</a>
+	{{pass}}
+	{{pass}}
+
+</table>
+
+<br>
+<br>
+<p align="right">
+	For more details about any recipe, click on the title of that recipe.
+</p>
+
+<hr size="30">
+<hr style="height: 1px">

@@ -1,0 +1,117 @@
+{{extend "layout.html"}}
+
+<div style="display:flex; flex-direction:row;">
+	<div style="display:flex; flex-direction:column;">
+		<img src="{{=URL('static','images/a.jpg')}}" alt="Cheffiter _/\_ " width="100" height="100"/>
+	</div>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;
+
+	<div style="display:flex; flex-direction:column;">
+		<h1 style="margin-top: 5px;">Welcome to the social network for leading Chef's.</h1>
+	</div>
+</div>
+
+<br>
+
+{{c=1}}
+
+<table style="width:60%; border-spacing:100px; padding:100;" cellpadding="100" align="center" class="table">
+	<tr>
+		<td align="center">
+			<b>S.No</b>
+		</td>
+
+		<td align="center">
+			<b>Title</b>
+		</td>
+
+		<td align="center">
+			<b>Author</b>
+		</td>
+
+		<td align="center">
+			<b>Image(s)</b>
+		</td>
+
+		<td align="center">
+			<b>Like(y)</b>
+		</td>
+
+		<td align="center">
+			<b>No. of likes</b>
+		</td>
+	</tr>
+	<br>
+	
+	{{for i,row in enumerate(rows):}}
+	{{if i==items_per_page: break}}
+	<tr>
+		<td align="center">
+			{{=row.id}}.
+			{{c+=1}}
+		</td>
+	
+		<td align="center">
+			<a href="{{=URL('default',  'details', args=row.id)}}"><b>{{=row.title}}</b></a>
+		</td>
+
+		<td align="center">
+			{{=row.created_by.first_name}}
+		</td>
+
+		<td align="center">
+			<img src="{{=URL('default', 'download', args=row.image)}}"alt="cool!" height="50px" width="100px" />
+		</td>
+
+		<td align="center">
+			<a href="{{=URL('default', 'update_likes', args=row.id)}}"><img src="{{=URL('static','images/a.jpeg')}}" alt="Like" width="100px" height="40px"></a>
+		</td>
+
+		<td align="center">
+			{{=row.likes}}
+		</td>
+	</tr>
+
+	{{pass}}
+</table>
+
+{{x=5}}
+
+<br>
+<br>
+<br>
+<div style="display:flex; flex-direction:row; width:100" width="100">
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	{{if page:}}
+	<div style="display:flex; flex-direction:column;">
+		<a href="{{=URL(args=[page-1])}}">previous</a>
+	</div>
+	{{pass}}
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	{{if len(rows) > items_per_page:}}
+	<div style="display:flex; flex-direction:column;">
+		<a href="{{=URL(args=[page+1])}}">next</a>
+	</div>
+	{{pass}}
+</div>
+
+<br>
+<br>
+<br>
+<p align="right">
+	For more details about any recipe, click on the title of that recipe.
+</p>
+
+<hr size="30">
+<hr style="height: 1px">
